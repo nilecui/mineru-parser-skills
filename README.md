@@ -1,138 +1,139 @@
 # MinerU Parser
 
-基于 Claude Agent SDK 和 MinerU Skill 的 PDF 文档解析工具，支持将 PDF 文档解析为 Markdown 格式。
+[English](README.md) | [中文](README_zh.md)
 
-## ⚠️ 重要说明
+A PDF document parsing tool based on Claude Agent SDK and MinerU Skill, supporting parsing PDF documents into Markdown format.
 
-**本项目仅支持在线版本**，需要通过 URL 访问 PDF 文档，不支持本地文件上传。
+## ⚠️ Important Notice
 
-## 📋 前置要求
+**This project only supports online version**. PDF documents must be accessed via URL. Local file upload is not supported.
+
+## 📋 Prerequisites
 
 - Python 3.7+
-- `MINERU_API_KEY` 环境变量（必需）
+- `MINERU_API_KEY` environment variable (required)
 
-## 🔑 配置 API 密钥
+## 🔑 Configure API Key
 
-在使用本项目之前，必须先配置 MinerU API 密钥：
+Before using this project, you must configure the MinerU API key:
 
 ```bash
 export MINERU_API_KEY='your_api_key_here'
 ```
 
-### 获取 API 密钥
+### Getting Your API Key
 
-1. 访问 [MinerU 官网](https://mineru.net) 并注册/登录
-2. 进入账户设置或 API 部分
-3. 生成或复制您的 API 密钥
+1. Visit [MinerU website](https://mineru.net) and register/login
+2. Navigate to your account settings or API section
+3. Generate or copy your API key
 
-### 验证配置
+### Verify Configuration
 
-运行以下命令验证 API 密钥是否已正确设置：
+Run the following command to verify that the API key is correctly set:
 
 ```bash
 echo $MINERU_API_KEY
 ```
 
-如果输出为空，请重新设置环境变量。
+If the output is empty, please set the environment variable again.
 
-## 🚀 安装依赖
+## 🚀 Install Dependencies
 
 ```bash
 pip install claude-agent-sdk
 ```
 
-## 💻 使用方法
+## 💻 Usage
 
-### 基本使用
+### Basic Usage
 
-1. 确保已设置 `MINERU_API_KEY` 环境变量
-2. 修改 `demo.py` 中的 PDF URL
-3. 运行脚本：
+1. Ensure `MINERU_API_KEY` environment variable is set
+2. Modify the PDF URL in `demo.py`
+3. Run the script:
 
 ```bash
 python demo.py
 ```
 
-### 命令行选项
+### Command Line Options
 
 ```bash
-# 运行发票解析
+# Run invoice parsing
 python demo.py
 
-# 测试 skill 可用性
+# Test skill availability
 python demo.py --test
 
-# 显示帮助信息
+# Show help information
 python demo.py --help
 ```
 
-## 📝 示例
+## 📝 Example
 
-`demo.py` 展示了如何使用 MinerU Skill 解析发票 PDF：
+`demo.py` demonstrates how to use MinerU Skill to parse invoice PDFs:
 
-- 提取发票基本信息（发票代码、发票号码、开票日期）
-- 提取购买方和销售方信息
-- 提取商品明细
-- 提取税额和价税合计信息
-- 提取签章信息
+- Extract basic invoice information (invoice code, invoice number, issue date)
+- Extract buyer and seller information
+- Extract product details
+- Extract tax amount and total amount information
+- Extract signature information
 
-解析结果将保存到 `invoice_parsed/` 目录中。
+Parsing results will be saved to the `invoice_parsed/` directory.
 
-## 🔧 配置说明
+## 🔧 Configuration
 
-项目使用 Claude Agent SDK 的 Skills 功能，配置如下：
+The project uses Claude Agent SDK's Skills feature with the following configuration:
 
-- **Skills 来源**: 从项目目录 `.claude/skills/` 加载
-- **权限模式**: `bypassPermissions`（自动接受所有操作）
-- **支持的工具**: Skill, view, create_file, str_replace
+- **Skills Source**: Loaded from project directory `.claude/skills/`
+- **Permission Mode**: `bypassPermissions` (automatically accept all operations)
+- **Supported Tools**: Skill, view, create_file, str_replace
 
-## 📚 功能特性
+## 📚 Features
 
-- ✅ 支持 PDF、DOC、DOCX、PPT、PPTX 和图片文件
-- ✅ 提取文本、表格、公式和结构化内容
-- ✅ 支持 OCR 和 VLM 模型
-- ✅ 输出 Markdown 格式
-- ✅ 自动保存解析结果
+- ✅ Support for PDF, DOC, DOCX, PPT, PPTX, and image files
+- ✅ Extract text, tables, formulas, and structured content
+- ✅ Support for OCR and VLM models
+- ✅ Output in Markdown format
+- ✅ Automatically save parsing results
 
-## ⚠️ 限制
+## ⚠️ Limitations
 
-- 仅支持通过 URL 访问的在线文档
-- 不支持本地文件上传
-- 最大文件大小：200MB
-- 最大页数：600 页
-- 每日配额：2000 页（高优先级）
+- Only supports online documents accessed via URL
+- Local file upload is not supported
+- Maximum file size: 200MB
+- Maximum pages: 600 pages
+- Daily quota: 2000 pages (high priority)
 
-## 🐛 故障排除
+## 🐛 Troubleshooting
 
-### 错误：未设置 MINERU_API_KEY
+### Error: MINERU_API_KEY not set
 
 ```
-❌ 错误: 未设置 MINERU_API_KEY 环境变量
+❌ Error: MINERU_API_KEY environment variable not set
 ```
 
-**解决方案**：
+**Solution**:
 ```bash
 export MINERU_API_KEY='your_api_key'
 ```
 
-### PDF URL 无法访问
+### PDF URL Not Accessible
 
-确保 PDF URL 是公开可访问的，并且网络连接正常。
+Ensure the PDF URL is publicly accessible and your network connection is working properly.
 
-### Skill 不可用
+### Skill Not Available
 
-运行测试命令检查：
+Run the test command to check:
 ```bash
 python demo.py --test
 ```
 
-确保 `.claude/skills/mineru-parser/` 目录存在且配置正确。
+Ensure the `.claude/skills/mineru-parser/` directory exists and is configured correctly.
 
-## 📄 许可证
+## 📄 License
 
-请参考项目许可证文件。
+Please refer to the project license file.
 
-## 🤝 贡献
+## 🤝 Contributing
 
-欢迎提交 Issue 和 Pull Request！
-
+Issues and Pull Requests are welcome!
