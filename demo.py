@@ -8,7 +8,7 @@ from claude_agent_sdk import query, ClaudeAgentOptions
 
 async def main():
     # 线上 PDF URL
-    pdf_url = "http://github.com/nilecui/mineru-parser/blob/main/demo.pdf"
+    pdf_url = "http://152.136.244.179:8888/down/a5jd6eqAafPh.pdf"
     
     # 验证 API 密钥
     api_key = os.getenv("MINERU_API_KEY")
@@ -65,7 +65,7 @@ async def main():
 **输出要求:**
 - 使用清晰的 Markdown 表格展示结构化数据
 - 对关键金额和日期进行突出显示
-- 保存解析后的完整 Markdown 到本地文件
+- 保存解析后的完整 Markdown 到本地目录invoice_parsed中
 
 请开始执行解析任务!
 """
