@@ -37,11 +37,28 @@ echo $MINERU_API_KEY
 
 If the output is empty, please set the environment variable again.
 
-## 🚀 Install Dependencies
+## 🚀 Installation
+
+### Step 1: Clone the Repository
 
 ```bash
-pip install claude-agent-sdk
+git clone <repository-url>
+cd mineru-parser
 ```
+
+### Step 2: Install Dependencies
+
+Install the required dependencies using `requirements.txt`:
+
+```bash
+pip install -r requirements.txt
+```
+
+This will install `claude-agent-sdk` and its dependencies.
+
+### Step 3: Configure API Key
+
+Set the `MINERU_API_KEY` environment variable. See the [Configure API Key](#-configure-api-key) section above for detailed instructions.
 
 ## 💻 Usage
 
